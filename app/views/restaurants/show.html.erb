@@ -1,11 +1,11 @@
 <%= render "restaurants/navbar" %>
 <div class="container">
   <div class="d-flex">
-    <div class="w-50 mb-3">
-      <%= image_tag ("https://source.unsplash.com/500x200/?restaurant,#{rand(1000)}") %>
+    <div class="mb-3">
+      <%= image_tag ("https://source.unsplash.com/500x200/?restaurant#{@restaurant.name}") %>
     </div>
     <div class="ml-3">
-      <h1><%= @restaurant.name %> [ <%= @restaurant.reviews.average(:rating).round(2) %>/5 ]</h1>
+      <h1><%= @restaurant.name %> <%= icon('fas', 'star', class: 'text-warning') %> <%= @restaurant.reviews.average(:rating).round(2) %></h1>
       <h2><%= icon('fas', 'utensils') %> <%= @restaurant.category.capitalize %></h2>
       <h2><%= icon('fas', 'address-book') %> <%= @restaurant.address %></h2>
       <h2><%= icon('fas', 'phone-square-alt') %> <%= @restaurant.phone_number %></h2>
@@ -14,6 +14,7 @@
   <%= link_to "Review this restaurant", new_restaurant_review_path(@restaurant.id), class: "btn btn-primary mb-3" %>
 
   <% @restaurant.reviews.reverse.each do |review| %>
-    <p>[ <%= review.rating %>/5 ] <%= review.content %></p>
+    <% @star = review.rating.floor %>
+    <p>[ <%= render "restaurants/star" %> ] <%= review.content %></p>
   <% end %>
 </div>

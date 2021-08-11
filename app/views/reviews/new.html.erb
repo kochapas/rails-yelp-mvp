@@ -4,7 +4,7 @@
   <p><%= icon('fas', 'address-book') %> <%= @restaurant.address %> / <%= icon('fas', 'phone-square-alt') %> <%= @restaurant.phone_number %></p>
   <p></p>
   <%= simple_form_for [@restaurant, @review] do |f| %>
-    <%= f.input :rating, input_html: { min: '0', max: '5' , placeholder: "Something between 0 - 5"} %>
+    <%= f.input :rating, collection: (0..5) %>
     <%= f.input :content, input_html: { placeholder: "Amazing! I enjoyed my second visit as much as the first one."} %>
     <%= f.submit class: "btn btn-primary" %>
   <% end %>

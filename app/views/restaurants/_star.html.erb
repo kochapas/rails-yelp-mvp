@@ -1,0 +1,6 @@
+<% @star.times do %>
+  <%= icon('fas', 'star', class: 'text-warning') %>
+<% end %>
+<% (5 - @star).times do %>
+  <%= icon('far', 'star', class: 'text-warning') %>
+<% end %>
