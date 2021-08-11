@@ -1,0 +1,20 @@
+<%= render "restaurants/navbar" %>
+<div class="container pb-3">
+  <div class="cards">
+    <% @restaurants.each do |restaurant| %>
+      <%= link_to restaurant_path(restaurant) do %>
+      <div class="card-trip">
+        <img src="https://source.unsplash.com/350x350/?restaurant,<%= rand(1000) %>" />
+        <div class="card-trip-infos">
+          <div>
+            <h2><%= restaurant.name %></h2>
+            <p><%= restaurant.address %></p>
+          </div>
+          <h2 class="card-trip-pricing"><%= restaurant.reviews.average(:rating).round(2) %></h2>
+          <img src="https://source.unsplash.com/50x50/?food,<%= rand(1000) %>" class="card-trip-user avatar-bordered" />
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>
